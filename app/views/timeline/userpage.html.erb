@@ -1,0 +1,4 @@
+<h1>userpage</h1>
+<% @users.each do |a| %>
+    <a href="/mypage?id=<%=a.id%>"><%=a.email%></a><br>
+<% end %>

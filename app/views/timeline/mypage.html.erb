@@ -1,0 +1,33 @@
+<h1><%=@me.email%>'s Timeline</h1>
+<%=form_tag '/mywrite', method: 'post'%>
+    <textarea class="form-control" rows="3" name="naeyong"></textarea>
+    <input class="btn btn-success" type="submit">
+</form>
+<ul>
+    <% @blogs.each do |b| %>
+        <li>
+            <%=b.user.email%> :
+            <div class="well">
+                <%=b.content%>
+            </div>
+            <a href="/blog_edit?id=<%=b.id%>">수정</a>
+            <a href="/blog_delete?id=<%=b.id%>">삭제</a>
+            <%=form_tag '/comment', method: 'post', class: "form-inline" %>
+                <input type="hidden" name="blog_id" value="<%=b.id%>">
+                <div class="form-group">
+                    <input type="text" name="comment" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary">
+                </div>
+            </form>
+            <ol>
+                <% b.comments.each do |c| %>
+                    <li><%=c.user.email%> : <%=c.msg%></li>
+                    <a href="/comment_edit?id=<%=c.id%>">수정</a>
+                    <a href="/comment_delete?id=<%=c.id%>">삭제</a>
+                <% end %>
+            </ol>
+        </li>
+    <% end %>
+</ul>

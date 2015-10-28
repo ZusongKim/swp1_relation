@@ -1,0 +1,6 @@
+<h1>Edit Blog</h1>
+<%= form_tag '/blog_update', method: 'post' do %>
+    <input type="hidden" name="id" value="<%=@bd.id%>">
+    <textarea name="naeyong"><%=@bd.content%></textarea>
+    <input type="submit">
+<% end %>
